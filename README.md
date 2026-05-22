@@ -1,4 +1,4 @@
-# e-commerce-api
+# E-Commerce API
 
 A RESTful API for an e-commerce application built with FastAPI and PostgreSQL.
 
