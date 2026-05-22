@@ -76,3 +76,12 @@ Interactive documentation at `http://localhost:8000/docs`
 | POST | `/api/products` | Create a product |
 | PATCH | `/api/products/{product_id}` | Update a product |
 | DELETE | `/api/products/{product_id}` | Delete a product |
+
+### Authentication
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| POST | `/api/auth/login` | Login to account and init cart |
+| POST | `/api/auth/register` | Create account |
+
+
