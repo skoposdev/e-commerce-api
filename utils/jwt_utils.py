@@ -19,7 +19,8 @@ def create_token(id: int):
 
 def decode_jwt(token: str):
     try:
-        return jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        print(token)
+        return jwt.decode(token, SECRET_KEY, algorithms=['HS256'], options={'verify_iat': False})
     except jwt.ExpiredSignatureError:
         raise Exception('Signature expired. Please log in again.')
     except jwt.InvalidTokenError:

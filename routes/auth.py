@@ -9,7 +9,7 @@ from utils.jwt_utils import create_token
 
 router = APIRouter()
 
-@router.post("/auth/login", response_model=UserResponse)
+@router.post("/api/auth/login", response_model=UserResponse)
 async def login(res: Response, user_login: UserCreateOrLogin):
     try:
         user = retrieve_user(user_login)
@@ -24,7 +24,7 @@ async def login(res: Response, user_login: UserCreateOrLogin):
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
 
-@router.post("/auth/register", response_model=UserResponse)
+@router.post("/api/auth/register", response_model=UserResponse)
 async def register(user_register: UserCreateOrLogin):
     try:
         user = create_user(user_register)

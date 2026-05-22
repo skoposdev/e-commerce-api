@@ -6,7 +6,7 @@ from database.database import engine
 from models.cart import Cart
 from models.user import User
 from schemas.user import UserCreateOrLogin, UserResponse
-from services.order import create_cart
+from services.cart import create_cart
 from utils.exceptions import UserNotFoundError, UserCreateError
 
 def retrieve_user(user: UserCreateOrLogin):

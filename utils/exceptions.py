@@ -12,3 +12,8 @@ class UserUpdateError(Exception): pass
 class UserDeleteError(Exception): pass
 
 class CartCreateError(Exception): pass
+
+class CartItemsReturnedError(Exception): pass
+class CartItemsCreateError(Exception): pass
+class CartItemsUpdateError(Exception): pass
+class CartItemsDeleteError(Exception): pass
