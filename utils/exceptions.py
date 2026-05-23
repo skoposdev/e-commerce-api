@@ -17,3 +17,5 @@ class CartItemsReturnedError(Exception): pass
 class CartItemsCreateError(Exception): pass
 class CartItemsUpdateError(Exception): pass
 class CartItemsDeleteError(Exception): pass
+
+class OrderProcessError(Exception): pass

@@ -14,3 +14,4 @@ class OrderItems(Base):
     unit_price: Mapped[float] = mapped_column()
     orders = relationship("Order", back_populates="order_items")
     products = relationship("Product", back_populates="order_items")
+

@@ -1,18 +1,18 @@
-from fastapi import APIRouter, Response, HTTPException
+from fastapi import APIRouter, Response, HTTPException, Depends
 from pwdlib import PasswordHash
 from starlette import status
 
+from database.database import get_db
 from schemas.user import UserCreateOrLogin, UserResponse
 from services.auth import retrieve_user, create_user
-from utils.exceptions import UserNotFoundError
 from utils.jwt_utils import create_token
 
 router = APIRouter()
 
 @router.post("/api/auth/login", response_model=UserResponse)
-async def login(res: Response, user_login: UserCreateOrLogin):
+async def login(res: Response, user_login: UserCreateOrLogin, session = Depends(get_db)):
     try:
-        user = retrieve_user(user_login)
+        user = retrieve_user(session=session, user=user_login)
         password_hash = PasswordHash.recommended()
 
         if password_hash.verify(user_login.password, user.password_hash):
@@ -25,9 +25,9 @@ async def login(res: Response, user_login: UserCreateOrLogin):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
 
 @router.post("/api/auth/register", response_model=UserResponse)
-async def register(user_register: UserCreateOrLogin):
+async def register(user_register: UserCreateOrLogin, session = Depends(get_db)):
     try:
-        user = create_user(user_register)
+        user = create_user(session=session, user=user_register)
         return user
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))

@@ -1,4 +1,6 @@
 from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
+
 from models.base import Base
 from dotenv import load_dotenv
 import os
@@ -10,4 +12,6 @@ engine = create_engine(f"postgresql+psycopg2://postgres:{DB_PASSWORD}@localhost/
 
 Base.metadata.create_all(engine)
 
-
+def get_db():
+    with Session(engine) as session:
+        yield session

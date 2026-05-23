@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 class CartItemsCreate(BaseModel):
@@ -12,3 +14,7 @@ class CartItemsResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class CartItemsUpdate(BaseModel):
+    product_id: Optional[int] = None
+    quantity: Optional[int] = None
