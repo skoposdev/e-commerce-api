@@ -8,9 +8,7 @@ import os
 load_dotenv()
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 
-engine = create_engine(f"postgresql+psycopg2://postgres:{DB_PASSWORD}@localhost/ecommerce", echo=True)
-
-Base.metadata.create_all(engine)
+engine = create_engine(f"postgresql+psycopg2://postgres:{DB_PASSWORD}@db/ecommerce", echo=True)
 
 def get_db():
     with Session(engine) as session:
